@@ -1,0 +1,77 @@
+# Hangman Project Documentation Minhaz Hoque
+
+> Include here a brief description of the project, what technologies are used etc.
+
+## Asking the user for an input
+
+- Answer some of these questions in the next few bullet points. What have you built? What technologies have you used? Why have you used those?
+- The purpose of this milestone was to create a section of code that will ask the user for an input and then verify whether their input was a valid input. A valid input in this game would require the input to meet 3 conditions:
+- Condition 1 is that input must be 1 character long
+- Condition 2 is that character must be a letter
+- Condition 3 is that letter must not be a previously guessed letter
+- Conditions 1 & 2 will have to be met simultaneously
+
+- Example: The FastAPI framework allows for fast and easy construction of APIs and is combined with pydantic, which is used to assert the data types of all incoming data to allow for easier processing later on. The server is ran locally using uvicorn, a library for ASGI server implementation.
+  
+```python code for this section
+
+def ask_letter(self):
+        letter = input ('please enter a letter: ') 
+
+        if len(letter) != 1 or not letter.isalpha() :
+            print ('Sorry, your input was not valid')
+        
+        elif letter in self.list_letters:
+            print ('Oops! You have already guessed that letter')
+
+        else:
+            self.check_letter(letter)
+```
+
+> Insert an image/screenshot of what you have built so far here.
+
+## Defining the initialiser
+
+- An initializer in python allows us to set a newly created object's attributes to their initial state. In this _init_ method we define numerous variables that we will use later on. A link to the previous method can be seen in the self.list_letters which we defined in the init method. We defined this as an  empty list which we can fill using the guessed letters throughout the games progression.
+
+- Example below:
+
+```python
+def __init__(self, word_list, num_lives=5)
+```
+
+- The above initializer initializes two attributes: word list (the list of words that the game word will be picked at random from) and the number of lives the player has. 
+-The word self is used to bind the object’s attributes to the arguments received
+-The game object that will be created in the play_game funtion will make use of this in the following fashion:
+
+```python
+game = Hangman (word_list, num_lives=5)
+```
+
+```python code for this section
+def __init__(self, word_list, num_lives=5):
+      self.num_lives = num_lives
+      self.word_list = word_list
+      word_list = ['apple', 'pear', 'banana', 'strawberry', 'watermelon', 'orange']
+      self.chosen_word = random.choice(self.word_list)
+      self.word_guessed = list(('_')) * len(self.chosen_word)
+      self.list_letters = []
+      self.num_letters = len(set(self.chosen_word))
+      self.attempts = 0
+      print ('The mystery word has', len(self.chosen_word), 'characters')
+      print (self.word_guessed)
+```
+
+> Insert screenshot of what you have built working.
+
+## Milestone n
+
+- Continue this process for every milestone, making sure to display clear understanding of each task and the concepts behind them as well as understanding of the technologies used.
+
+- Also don't forget to include code snippets and screenshots of the system you are building, it gives proof as well as it being an easy way to evidence your experience!
+
+## Conclusions
+
+- Maybe write a conclusion to the project, what you understood about it and also how you would improve it or take it further.
+
+- Read through your documentation, do you understand everything you've written? Is everything clear and cohesive?
